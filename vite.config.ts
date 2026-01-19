@@ -109,4 +109,8 @@ function chrome129IssuePlugin() {
       });
     },
   };
+  server: {
+  allowedHosts: true
+}
+
 }
