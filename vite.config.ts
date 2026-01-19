@@ -13,22 +13,22 @@ dotenv.config();
 
 export default defineConfig((config) => {
   return {
+    // 1. MOVED TO TOP & ADDED BOTH OPTIONS
+    server: {
+      host: true,
+      port: 5173,
+      strictPort: false,
+      allowedHosts: [
+        'boltdiy-production-8b7c.up.railway.app',
+        '.up.railway.app',
+        'true' 
+      ],
+    },
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     },
     build: {
       target: 'esnext',
-    },
-    // Fix for Vite 6 "Blocked Host" error
-    server: {
-      host: true,
-      allowedHosts: true, // Allows all hosts
-      strictPort: false,
-    },
-    // Adding this in case Railway is running in preview mode
-    preview: {
-      host: true,
-      allowedHosts: true,
     },
     plugins: [
       nodePolyfills({
