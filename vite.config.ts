@@ -109,18 +109,7 @@ function chrome129IssuePlugin() {
       });
     },
   };
- import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    allowedHosts: [
-      'boltdiy-production-8b7c.up.railway.app'
-    ]
-  }
-})
-
+ 
 }
 
 }
