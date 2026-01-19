@@ -19,7 +19,14 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    // Fix for Vite 6 "Blocked Host" error
     server: {
+      host: true,
+      allowedHosts: true, // Allows all hosts
+      strictPort: false,
+    },
+    // Adding this in case Railway is running in preview mode
+    preview: {
       host: true,
       allowedHosts: true,
     },
@@ -84,7 +91,7 @@ ${code}`,
         '**/cypress/**',
         '**/.{idea,git,cache,output,temp}/**',
         '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
-        '**/tests/preview/**', // Exclude preview tests that require Playwright
+        '**/tests/preview/**', 
       ],
     },
   };
@@ -115,5 +122,6 @@ function chrome129IssuePlugin() {
     },
   };
 }
+
 
 
