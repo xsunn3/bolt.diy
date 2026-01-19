@@ -19,13 +19,10 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
-    // --- ADDED THIS SECTION ---
     server: {
-      allowedHosts: [
-        'boltdiy-production-8b7c.up.railway.app'
-      ],
+      host: true,
+      allowedHosts: true,
     },
-    // ---------------------------
     plugins: [
       nodePolyfills({
         include: ['buffer', 'process', 'util', 'stream'],
@@ -118,3 +115,5 @@ function chrome129IssuePlugin() {
     },
   };
 }
+
+
