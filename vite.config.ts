@@ -19,6 +19,13 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    // --- ADDED THIS SECTION ---
+    server: {
+      allowedHosts: [
+        'boltdiy-production-8b7c.up.railway.app'
+      ],
+    },
+    // ---------------------------
     plugins: [
       nodePolyfills({
         include: ['buffer', 'process', 'util', 'stream'],
@@ -35,7 +42,8 @@ export default defineConfig((config) => {
         transform(code, id) {
           if (id.includes('env.mjs')) {
             return {
-              code: `import { Buffer } from 'buffer';\n${code}`,
+              code: `import { Buffer } from 'buffer';
+${code}`,
               map: null,
             };
           }
@@ -90,7 +98,7 @@ function chrome129IssuePlugin() {
     name: 'chrome129IssuePlugin',
     configureServer(server: ViteDevServer) {
       server.middlewares.use((req, res, next) => {
-        const raw = req.headers['user-agent']?.match(/Chrom(e|ium)\/([0-9]+)\./);
+        const raw = req.headers['user-agent']?.match(/Chrom(e|ium)/([0-9]+)./);
 
         if (raw) {
           const version = parseInt(raw[2], 10);
@@ -109,7 +117,4 @@ function chrome129IssuePlugin() {
       });
     },
   };
- 
-}
-
 }
